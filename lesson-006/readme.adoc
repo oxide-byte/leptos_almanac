@@ -1,0 +1,6 @@
+= Serve Web Site
+
+[source,bash]
+----
+trunk serve --open --port=8080
+----

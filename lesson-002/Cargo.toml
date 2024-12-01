@@ -1,0 +1,15 @@
+[package]
+name = "lesson-002"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+leptos = { version = "0.7.0", features = ["csr"] }
+wasm-bindgen-test = "0.3.47"
+wasm-bindgen = "0.2.97"
+web-sys = "0.3.74"
+
+[dev-dependencies]
+wasm-bindgen-test = "0.3.47"
+wasm-bindgen = "0.2.97"
+web-sys = "0.3.74"

@@ -1,0 +1,11 @@
+= Serve Web Site
+
+[source,bash]
+----
+trunk serve --open --port=8080
+----
+
+[source,bash]
+----
+wasm-pack test --firefox
+----

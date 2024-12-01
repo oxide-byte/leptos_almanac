@@ -1,0 +1,7 @@
+# BUILD
+**/*/target
+**/*/dist
+
+# IDEA
+.idea
+*.iml
