@@ -787,7 +787,7 @@ dependencies = [
 ]
 
 [[package]]
-name = "lesson-006"
+name = "lesson-005"
 version = "0.1.0"
 dependencies = [
  "leptos",

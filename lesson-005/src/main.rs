@@ -1,47 +1,83 @@
-use leptos::ev::MouseEvent;
-use leptos::logging::log;
 use leptos::prelude::*;
 
-
 #[component]
-pub fn ClickModal(on_close_modal: impl FnMut(MouseEvent)+ 'static) -> impl IntoView {
-    let button_class = "bg-green-700 hover:bg-green-800 px-20 py-3 text-white rounded-lg";
+pub fn UpDownBySignal(signal: WriteSignal<i32>) -> impl IntoView {
+    let button_class = "text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-full text-sm p-2.5 text-center items-center mr-5";
 
     view! {
-        <div class="fixed inset-0 z-50 flex items-center justify-center bg-gray-900 bg-opacity-60">
-            <div class="block rounded-lg bg-white w-1/5 p-4 shadow-[0_2px_15px_-3px_rgba(0,0,0,0.07),0_10px_20px_-2px_rgba(0,0,0,0.04)] z-70">
+        <div>
+            <button class=button_class
+                    on:click={move |_| {signal.update(|x| *x = *x + 1)}}
+            > + </button>
 
-                <button on:click=on_close_modal class=button_class>
-                    Close Modal
-                </button>
+            <button class=button_class
+                    on:click={move |_| {signal.update(|x| *x = *x - 1)}}
+            > - </button>
+        </div>
+    }
+}
 
-            </div>
+#[component]
+pub fn UpDownByCallback<FU, FD>(current_value:ReadSignal<i32>,
+                        on_up:FU, on_down:FD) -> impl IntoView
+    where
+        FU: Fn(i32) + 'static,
+        FD: Fn(i32) + 'static, {
+    let button_class = "text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-full text-sm p-2.5 text-center items-center mr-5";
+
+    let add_one = move |_| {
+        let new = *current_value.read() + 1;
+        on_up(new);
+    };
+
+    let subtract_one = move |_| {
+        let new = *current_value.read() - 1;
+        on_down(new);
+    };
+
+    view! {
+        <div>
+            <button class=button_class
+                    on:click=add_one
+            > + </button>
+
+            <button class=button_class
+                    on:click=subtract_one
+            > - </button>
+
+            <p> {current_value} </p>
         </div>
     }
 }
 
 #[component]
 pub fn App() -> impl IntoView {
-    let button_class = "bg-blue-700 hover:bg-blue-800 px-20 py-3 text-white rounded-lg";
-    let show_modal: RwSignal<bool> = RwSignal::new(false);
-    let on_click = move |_| {
-        show_modal.set(true);
+    let (get_counter, set_counter) = signal(0);
+
+    let on_up_event = move|x| {
+        set_counter.set(x);
     };
 
-    let close_modal = move |_| {
-        log!("Close Modal");
-        show_modal.set(false);
+    let on_down_event = move|x| {
+        set_counter.set(x);
     };
+
 
     view! {
-        <button on:click=on_click class=button_class>
-            Show Modal
-        </button>
+        <div class="m-10">
 
-        <Show when = move || show_modal.get()>
-            <ClickModal on_close_modal=close_modal>
-            </ClickModal>
-        </Show>
+            <h1 class="text-4xl">Current Value : {get_counter}</h1>
+
+            <h2 class="text-2xl mt-10">Update by Signal</h2>
+            <UpDownBySignal signal=set_counter></UpDownBySignal>
+
+            <h2 class="text-2xl mt-10">Update by Callback</h2>
+            <UpDownByCallback
+                current_value=get_counter
+                on_up=on_up_event
+                on_down=on_down_event
+            ></UpDownByCallback>
+        </div>
     }
 }
 

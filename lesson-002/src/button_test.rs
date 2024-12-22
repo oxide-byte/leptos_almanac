@@ -8,6 +8,7 @@ use crate::CounterButton;
 
 wasm_bindgen_test_configure!(run_in_browser);
 
+// https://rustwasm.github.io/book/reference/debugging.html
 // https://rustwasm.github.io/wasm-bindgen/wasm-bindgen-test/index.html
 // https://book.leptos.dev/testing.html
 
