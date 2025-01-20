@@ -16,3 +16,4 @@ to get step by step into Leptos.
 | lesson-007 | Simple Input Field with evaluation                        |
 | lesson-008 | Simple Input Field without evaluation                     |
 | lesson-009 | For Loops, programmatic .map / \<For> on Signal           |
+| lesson-010 | Simple example of Leaflet implementation                  |

@@ -1,7 +1,7 @@
 [package]
 name = "lesson-008"
 version = "0.1.0"
-edition = "2021"
+edition = "2024"
 
 [dependencies]
-leptos = { version = "0.7.1", features = ["csr"] }
+leptos = { version = "0.7.4", features = ["csr"] }
