@@ -5,7 +5,7 @@ use leptos::logging::log;
 use leptos::html::{ button };
 
 #[component]
-pub fn CounterButton(counter: ReadSignal<i32>, on_click: impl FnMut(MouseEvent)+ 'static) -> impl IntoView {
+pub fn CounterButtonHtml(counter: ReadSignal<i32>, on_click: impl FnMut(MouseEvent)+ 'static) -> impl IntoView {
     let button_class = "bg-blue-700 hover:bg-blue-800 px-20 py-3 text-white rounded-lg";
 
     view! {
@@ -37,7 +37,7 @@ pub fn App() -> impl IntoView {
     };
     view! {
         <div>
-        <CounterButton
+        <CounterButtonHtml
             counter=counter
             on_click=on_click
         />
