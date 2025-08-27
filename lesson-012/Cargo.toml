@@ -5,8 +5,8 @@ edition = "2024"
 
 [dependencies]
 
-leptos = { version = "0.8.5", default-features = false, "features" = ["csr"] }
-reactive_stores = { version = "0.2.3" }
+leptos = { version = "0.8.8", default-features = false, "features" = ["csr"] }
+reactive_stores = { version = "0.2.5" }
 
 [features]
 csr = []
