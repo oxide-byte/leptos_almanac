@@ -19,3 +19,11 @@ to get step by step into Leptos.
 | lesson-010 | For Loops, decompose                                      |
 | lesson-011 | Simple example of Leaflet implementation                  |
 | lesson-012 | Leptos Store                                              |
+
+## Helper
+
+For a new Leptos release, remove all old cargo.lock
+
+```shell
+find . -type f -name 'Cargo.lock' -delete
+```
